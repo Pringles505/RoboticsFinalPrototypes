@@ -8,8 +8,7 @@ import numpy as np
 from openai import OpenAI
 
 # Configuration
-OPENAI_API_KEY = "mete aqui el openai key"
-
+OPENAI_API_KEY = ""
 
 def set_motor_position_safe(motor: Motor, target: float):
     mn = motor.getMinPosition()
