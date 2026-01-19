@@ -1,0 +1,222 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/universal_robots/protos/UR5e.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/devices/robotiq/protos/Robotiq3fGripper.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.15281703294132584 -0.05963651870369285 0.9864534657447931 4.133540868472393
+  position 1.0758503834377113 1.5897899564224007 0.6767656037825782
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 3 3
+  floorAppearance PBRAppearance {
+    baseColorMap ImageTexture {
+      url [
+        "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/lightwood.jpg"
+      ]
+    }
+    roughness 1
+    metalness 0
+  }
+}
+UR5e {
+  hidden position_0_0 2.978827025619372e-08
+  hidden translation_1 0 0 0.163
+  hidden rotation_1 0 0 1 2.9802322387695313e-08
+  hidden position_1_0 -1.5699720915085542
+  hidden translation_2 0 0.138 0
+  hidden rotation_2 0 1 0 0.0008239084918787245
+  hidden position_2_0 1.5700278615821743
+  hidden translation_3 0 -0.131 0.425
+  hidden rotation_3 0 0.9999999999999999 0 1.5700278615821746
+  hidden position_3_0 -1.569996055080529
+  hidden translation_4 0 0 0.392
+  hidden rotation_4 0 1 0 0.0007999449195097928
+  hidden position_4_0 -1.5700003998309002
+  hidden translation_5 0 0.127 0
+  hidden rotation_5 0 0 -0.9999999999999999 1.5700003998309002
+  hidden position_5_0 4.190387444588662e-07
+  hidden translation_6 0 0 0.1
+  hidden rotation_6 0 1 0 4.1935584781975493e-07
+  hidden position_7_0 1.034184106774717e-05
+  hidden position_7_1 -1.151010400620595e-05
+  hidden position_7_2 0.04950019324854511
+  hidden translation_8 -0.0455 0.0214 0.036
+  hidden rotation_8 0.7068252250237375 0.7073882252524809 6.6549387665942595e-06 3.1416053156951174
+  hidden position_8_0 0.04951748708242278
+  hidden translation_9 0.02 0 0
+  hidden rotation_9 0 0 1 1.748700629074636e-05
+  hidden position_9_0 2.8582634787594062e-08
+  hidden translation_10 0.05 -0.028 0
+  hidden rotation_10 0 0 -1 0.5199999714173645
+  hidden position_10_0 -0.05230000000002258
+  hidden translation_11 0.039 0 0
+  hidden translation_12 -0.0455 0.0214 -0.036
+  hidden rotation_12 0.7068252250912905 0.7073882252154798 -1.0678157970290359e-06 3.1415898578896035
+  hidden position_12_0 0.04951728233842753
+  hidden translation_13 0.02 0 0
+  hidden rotation_13 0 0 1 1.7282263711059864e-05
+  hidden position_13_0 2.8583970799670673e-08
+  hidden translation_14 0.05 -0.028 0
+  hidden rotation_14 0 0 -1 0.5199999714160275
+  hidden position_14_0 -0.05229999999999956
+  hidden translation_15 0.039 0 0
+  hidden translation_16 0.02 0 0
+  hidden rotation_16 0 0 1 1.954268969387413e-07
+  hidden position_16_0 2.8200446162486076e-08
+  hidden translation_17 0.05 -0.028 0
+  hidden rotation_17 0 0 -1 0.5199999717995529
+  hidden position_17_0 -0.05229999999999515
+  hidden translation_18 0.039 0 0
+  hidden rotation_18 0 0 1 0
+  controller "auto_controller"
+  toolSlot [
+    Robotiq3fGripper {
+      name "gripper"
+    }
+    Camera {
+      translation 0 0 0.1
+      rotation 0 1 0 1.5708
+      width 640
+      height 480
+    }
+  ]
+}
+DEF red_box Solid {
+  translation 0.45232912904435907 0.39744229860060265 0.04996076000600236
+  rotation -4.3024881351936163e-16 9.491211109229366e-17 1 0.1696534271666169
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.1 0.1 0.1
+      }
+    }
+  ]
+  name "red_cube"
+  boundingObject Box {
+    size 0.1 0.1 0.1
+  }
+  physics Physics {
+    density -1
+    mass 0.1
+  }
+  linearVelocity -1.002080113423834e-17 3.7694249734796964e-17 -4.690487998005375e-11
+  angularVelocity -1.3322676295501882e-15 -6.661338147750946e-16 -7.168400558578494e-17
+}
+DEF green_box Solid {
+  translation 0.5943903091549003 0.07421787474040088 0.04996076000600236
+  rotation -5.0557542688750743e-17 -2.902001252580244e-17 1 1.1156298688775568
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.1 0.1 0.1
+      }
+    }
+  ]
+  name "green_sphere"
+  boundingObject Box {
+    size 0.1 0.1 0.1
+  }
+  physics Physics {
+    density -1
+    mass 0.1
+  }
+  linearVelocity -2.0768149711549284e-17 2.271286106275475e-17 -4.6904844452911984e-11
+  angularVelocity -1.6653345369377427e-16 -1.6653345369377348e-16 -3.6495684404436495e-17
+}
+DEF blue_box Solid {
+  translation 0.4700490499268872 -0.3982692237088461 0.04996076
+  rotation 4.1790743748342325e-17 1.4167052652379966e-16 0.9999999999999999 0.4248988465185228
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 1
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.1 0.1 0.1
+      }
+    }
+  ]
+  name "blue_cylinder"
+  boundingObject Box {
+    size 0.1 0.1 0.1
+  }
+  physics Physics {
+    density -1
+    mass 0.1
+  }
+  linearVelocity 6.069095696586276e-17 -7.153848508994453e-17 -1.232595164407831e-32
+  angularVelocity 1.4988010832439617e-15 6.661338147750941e-16 1.9301938550703768e-16
+}
+Solid {
+  translation -0.51 0.36 0.05
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.8 0.8
+        transparency 0.5
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.15 0.15 0.1
+      }
+    }
+  ]
+  name "box_1"
+}
+Solid {
+  translation -0.69 0.03 0.05
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.8 0.8
+        transparency 0.5
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.15 0.15 0.1
+      }
+    }
+  ]
+  name "box_2"
+}
+Solid {
+  translation -0.62 -0.3 0.05
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.8 0.8
+        transparency 0.5
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.15 0.15 0.1
+      }
+    }
+  ]
+  name "box_3"
+}
