@@ -6,9 +6,13 @@ import time
 import cv2
 import numpy as np
 from openai import OpenAI
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Configuration
-OPENAI_API_KEY = ""
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 
 def set_motor_position_safe(motor: Motor, target: float):
     mn = motor.getMinPosition()

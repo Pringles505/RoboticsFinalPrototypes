@@ -128,10 +128,12 @@ El flujo operacional consiste en capturar una imagen de un objeto físico median
 RoboticsFinalPrototypes/
 │
 ├── 📄 README.md                          # Documentación del proyecto
+├── 📄 .env.example                       # Plantilla de variables de entorno
+├── 📄 .gitignore                         # Archivos ignorados por Git
 │
 ├── 📁 controllers/
 │   └── 📁 auto_controller/
-│       └── 🐍 auto_controller.py         # Controlador principal (210 LOC)
+│       └── 🐍 auto_controller.py         # Controlador principal (215 LOC)
 │
 └── 📁 worlds/
     └── 🌍 color_picker_robot.wbt         # Mundo de simulación Webots
@@ -323,12 +325,15 @@ git clone https://github.com/Pringles505/RoboticsFinalPrototypes.git
 cd RoboticsFinalPrototypes
 
 # 2. Instalar dependencias Python
-pip install opencv-python numpy openai
+pip install opencv-python numpy openai python-dotenv
 
 # 3. Configurar API Key de OpenAI
-# Editar controllers/auto_controller/auto_controller.py
-# Línea 11: OPENAI_API_KEY = "tu-api-key-aqui"
+cp .env.example .env
+# Editar .env y añadir tu API Key:
+# OPENAI_API_KEY=tu-api-key-aqui
 ```
+
+> ⚠️ **Importante**: El archivo `.env` está incluido en `.gitignore` para proteger tu API Key. Nunca subas credenciales al repositorio.
 
 ### Execution
 
@@ -348,8 +353,8 @@ webots worlds/color_picker_robot.wbt
 ### Adjustable Parameters
 
 ```python
-# === OPENAI CONFIGURATION ===
-OPENAI_API_KEY = ""              # API Key (REQUERIDO)
+# === OPENAI CONFIGURATION (.env file) ===
+# OPENAI_API_KEY=tu-api-key     # API Key (REQUERIDO) - configurar en .env
 
 # === WEBCAM CONFIGURATION ===
 self.webcam.set(cv2.CAP_PROP_FRAME_WIDTH, 640)   # Ancho de captura
