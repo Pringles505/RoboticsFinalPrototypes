@@ -5,29 +5,566 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/universal_robots/protos/UR5e.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/devices/robotiq/protos/Robotiq3fGripper.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/conveyors/protos/ConveyorBelt.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/CardboardBox.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/WoodenPalletStack.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/tools/protos/PlatformCart.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/fire_extinguisher/protos/FireExtinguisher.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/pallet/protos/WoodenPallet.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/PlasticCrate.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/BmwX5.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/LincolnMKZ.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/tools/protos/Wrench.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/tools/protos/Hammer.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/solids/protos/SolidBox.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/TrafficCone.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/obstacles/protos/OilBarrel.proto"
 
 WorldInfo {
+  info [
+    "AI-Vision Color Picker Robot - Industrial Factory Environment"
+  ]
+  title "Color Picker Factory"
+  basicTimeStep 16
 }
 Viewpoint {
-  orientation -0.24529913542779974 -0.12407595741969406 0.9614746439447897 4.204000766753989
-  position 1.7618854897043044 3.3817795824538464 2.105090906383286
+  orientation -0.30 -0.12 0.94 4.1
+  position 6 8 5
 }
 TexturedBackground {
+  texture "factory"
 }
 TexturedBackgroundLight {
+  texture "factory"
+  luminosity 1.2
 }
+
+# ==================== FACTORY FLOOR ====================
 RectangleArena {
-  floorSize 3 3
+  floorSize 20 20
+  floorTileSize 2 2
   floorAppearance PBRAppearance {
+    baseColor 0.35 0.35 0.35
     baseColorMap ImageTexture {
       url [
-        "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/lightwood.jpg"
+        "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/concrete.jpg"
       ]
     }
-    roughness 1
-    metalness 0
+    roughness 0.9
+    metalness 0.05
+  }
+  wallThickness 0.2
+  wallHeight 5
+  wallAppearance PBRAppearance {
+    baseColor 0.6 0.6 0.55
+    baseColorMap ImageTexture {
+      url [
+        "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/default/worlds/textures/rock.jpg"
+      ]
+    }
+    roughness 0.85
+    metalness 0.1
   }
 }
+
+# ==================== INDUSTRIAL COLUMNS ====================
+DEF column_1 Solid {
+  translation 4 4 2.5
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.5 0.5 0.5
+        roughness 0.6
+        metalness 0.8
+      }
+      geometry Cylinder {
+        height 5
+        radius 0.25
+      }
+    }
+  ]
+  name "industrial_column_1"
+}
+DEF column_2 Solid {
+  translation -4 4 2.5
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.5 0.5 0.5
+        roughness 0.6
+        metalness 0.8
+      }
+      geometry Cylinder {
+        height 5
+        radius 0.25
+      }
+    }
+  ]
+  name "industrial_column_2"
+}
+DEF column_3 Solid {
+  translation 4 -4 2.5
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.5 0.5 0.5
+        roughness 0.6
+        metalness 0.8
+      }
+      geometry Cylinder {
+        height 5
+        radius 0.25
+      }
+    }
+  ]
+  name "industrial_column_3"
+}
+DEF column_4 Solid {
+  translation -4 -4 2.5
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.5 0.5 0.5
+        roughness 0.6
+        metalness 0.8
+      }
+      geometry Cylinder {
+        height 5
+        radius 0.25
+      }
+    }
+  ]
+  name "industrial_column_4"
+}
+DEF column_5 Solid {
+  translation 8 0 2.5
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.5 0.5 0.5
+        roughness 0.6
+        metalness 0.8
+      }
+      geometry Cylinder {
+        height 5
+        radius 0.25
+      }
+    }
+  ]
+  name "industrial_column_5"
+}
+DEF column_6 Solid {
+  translation -8 0 2.5
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.5 0.5 0.5
+        roughness 0.6
+        metalness 0.8
+      }
+      geometry Cylinder {
+        height 5
+        radius 0.25
+      }
+    }
+  ]
+  name "industrial_column_6"
+}
+
+# ==================== DAMAGED VEHICLES ====================
+BmwX5 {
+  translation 7 -6 0
+  rotation 0 0 1 2.5
+  name "damaged_car_1"
+}
+LincolnMKZ {
+  translation -7 6 0
+  rotation 0 0 1 -0.8
+  name "damaged_car_2"
+}
+
+# ==================== CONVEYOR BELTS ====================
+ConveyorBelt {
+  translation 3 0 0
+  rotation 0 0 1 1.5708
+  name "input_conveyor"
+  size 3 0.6 0.4
+  appearance PBRAppearance {
+    baseColor 0.15 0.15 0.15
+    roughness 0.7
+    metalness 0.4
+  }
+  borderHeight 0.06
+  speed 0
+}
+ConveyorBelt {
+  translation -3 0 0
+  rotation 0 0 1 1.5708
+  name "output_conveyor"
+  size 3 0.6 0.4
+  appearance PBRAppearance {
+    baseColor 0.15 0.15 0.15
+    roughness 0.7
+    metalness 0.4
+  }
+  borderHeight 0.06
+  speed 0
+}
+
+# ==================== SAFETY EQUIPMENT ====================
+FireExtinguisher {
+  translation 9.5 9.5 0
+  rotation 0 0 1 -2.35
+}
+FireExtinguisher {
+  translation -9.5 9.5 0
+  rotation 0 0 1 2.35
+  name "fire_extinguisher_2"
+}
+FireExtinguisher {
+  translation 9.5 -9.5 0
+  rotation 0 0 1 -0.8
+  name "fire_extinguisher_3"
+}
+
+# ==================== OIL BARRELS ====================
+OilBarrel {
+  translation 6 7 0.44
+  name "oil_barrel_1"
+}
+OilBarrel {
+  translation 6.5 7.3 0.44
+  name "oil_barrel_2"
+}
+OilBarrel {
+  translation 6.25 7.15 1.32
+  name "oil_barrel_3"
+}
+OilBarrel {
+  translation -6 -7 0.44
+  name "oil_barrel_4"
+}
+OilBarrel {
+  translation -6.6 -6.8 0.44
+  name "oil_barrel_5"
+}
+
+# ==================== TRAFFIC CONES ====================
+TrafficCone {
+  translation 5 -3 0
+  name "cone_1"
+}
+TrafficCone {
+  translation 5.5 -2.5 0
+  name "cone_2"
+}
+TrafficCone {
+  translation 5 -2 0
+  name "cone_3"
+}
+TrafficCone {
+  translation -5 3 0
+  name "cone_4"
+}
+TrafficCone {
+  translation -5.5 2.5 0
+  name "cone_5"
+}
+
+# ==================== STORAGE AREA - PALLETS ====================
+WoodenPalletStack {
+  translation 8 3 0
+  rotation 0 0 1 0.2
+  name "pallet_stack_1"
+  palletNumber 4
+}
+WoodenPalletStack {
+  translation 8 5 0
+  rotation 0 0 1 -0.1
+  name "pallet_stack_2"
+  palletNumber 3
+}
+WoodenPallet {
+  translation 7 4 0
+  name "pallet_single_1"
+}
+WoodenPallet {
+  translation -8 -3 0
+  rotation 0 0 1 0.5
+  name "pallet_single_2"
+}
+
+# ==================== PLASTIC CRATES ====================
+PlasticCrate {
+  translation 7 -2 0
+  rotation 0 0 1 0.15
+  name "crate_1"
+  size 0.6 0.5 0.4
+}
+PlasticCrate {
+  translation 7.7 -2 0
+  rotation 0 0 1 -0.1
+  name "crate_2"
+  size 0.6 0.5 0.4
+}
+PlasticCrate {
+  translation 7.35 -2 0.41
+  name "crate_3"
+  size 0.6 0.5 0.4
+}
+PlasticCrate {
+  translation -7 2 0
+  name "crate_4"
+  size 0.5 0.4 0.3
+}
+
+# ==================== CARDBOARD BOXES ====================
+CardboardBox {
+  translation -8 5 0
+  rotation 0 0 1 0.3
+  name "cardboard_1"
+  size 0.5 0.4 0.4
+}
+CardboardBox {
+  translation -8.5 5.2 0
+  rotation 0 0 1 -0.15
+  name "cardboard_2"
+  size 0.4 0.35 0.3
+}
+CardboardBox {
+  translation -8.25 5.1 0.35
+  name "cardboard_3"
+  size 0.45 0.35 0.25
+}
+CardboardBox {
+  translation -8.3 4.5 0
+  rotation 0 0 1 0.6
+  name "cardboard_4"
+  size 0.35 0.3 0.3
+}
+CardboardBox {
+  translation 6 -8 0
+  rotation 0 0 1 -0.4
+  name "cardboard_5"
+  size 0.5 0.4 0.35
+}
+CardboardBox {
+  translation 6.5 -8.2 0
+  name "cardboard_6"
+  size 0.4 0.4 0.3
+}
+
+# ==================== PLATFORM CARTS ====================
+PlatformCart {
+  translation -6 -4 0
+  rotation 0 0 1 0.6
+}
+PlatformCart {
+  translation 5 6 0
+  rotation 0 0 1 -1.2
+  name "platform cart(1)"
+}
+
+# ==================== TOOLS ON FLOOR ====================
+Wrench {
+  translation 2 3 0.02
+  rotation 0 0 1 0.8
+}
+Hammer {
+  translation 2.3 3.2 0.02
+  rotation 0 0 1 -0.5
+}
+Wrench {
+  translation -3 -2 0.02
+  rotation 0 0 1 2.1
+  name "wrench(1)"
+}
+
+# ==================== INDUSTRIAL SHELVING ====================
+DEF industrial_shelf_1 Solid {
+  translation 9 0 0
+  rotation 0 0 1 1.5708
+  children [
+    DEF shelf_post1 Transform {
+      translation 0 -0.5 1.25
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.3 0.55
+            roughness 0.4
+            metalness 0.85
+          }
+          geometry Box {
+            size 0.08 0.08 2.5
+          }
+        }
+      ]
+    }
+    DEF shelf_post2 Transform {
+      translation 0 0.5 1.25
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.3 0.55
+            roughness 0.4
+            metalness 0.85
+          }
+          geometry Box {
+            size 0.08 0.08 2.5
+          }
+        }
+      ]
+    }
+    DEF shelf_level1 Transform {
+      translation 0 0 0.5
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.45 0.45 0.5
+            roughness 0.5
+            metalness 0.6
+          }
+          geometry Box {
+            size 0.5 1.1 0.04
+          }
+        }
+      ]
+    }
+    DEF shelf_level2 Transform {
+      translation 0 0 1.2
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.45 0.45 0.5
+            roughness 0.5
+            metalness 0.6
+          }
+          geometry Box {
+            size 0.5 1.1 0.04
+          }
+        }
+      ]
+    }
+    DEF shelf_level3 Transform {
+      translation 0 0 1.9
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.45 0.45 0.5
+            roughness 0.5
+            metalness 0.6
+          }
+          geometry Box {
+            size 0.5 1.1 0.04
+          }
+        }
+      ]
+    }
+  ]
+  name "industrial_shelf_1"
+}
+DEF industrial_shelf_2 Solid {
+  translation -9 0 0
+  rotation 0 0 1 -1.5708
+  children [
+    DEF shelf_post1 Transform {
+      translation 0 -0.5 1.25
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.3 0.55
+            roughness 0.4
+            metalness 0.85
+          }
+          geometry Box {
+            size 0.08 0.08 2.5
+          }
+        }
+      ]
+    }
+    DEF shelf_post2 Transform {
+      translation 0 0.5 1.25
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.25 0.3 0.55
+            roughness 0.4
+            metalness 0.85
+          }
+          geometry Box {
+            size 0.08 0.08 2.5
+          }
+        }
+      ]
+    }
+    DEF shelf_level1 Transform {
+      translation 0 0 0.5
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.45 0.45 0.5
+            roughness 0.5
+            metalness 0.6
+          }
+          geometry Box {
+            size 0.5 1.1 0.04
+          }
+        }
+      ]
+    }
+    DEF shelf_level2 Transform {
+      translation 0 0 1.2
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.45 0.45 0.5
+            roughness 0.5
+            metalness 0.6
+          }
+          geometry Box {
+            size 0.5 1.1 0.04
+          }
+        }
+      ]
+    }
+    DEF shelf_level3 Transform {
+      translation 0 0 1.9
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.45 0.45 0.5
+            roughness 0.5
+            metalness 0.6
+          }
+          geometry Box {
+            size 0.5 1.1 0.04
+          }
+        }
+      ]
+    }
+  ]
+  name "industrial_shelf_2"
+}
+
+# ==================== WORK TABLE ====================
+DEF work_table Solid {
+  translation 0 0 0.01
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.25 0.25 0.3
+        roughness 0.4
+        metalness 0.8
+      }
+      geometry Box {
+        size 2.2 2.2 0.02
+      }
+    }
+  ]
+  name "robot_work_platform"
+}
+
+# ==================== THE ROBOT ====================
 UR5e {
   hidden position_0_0 -9.140426617800654e-07
   hidden rotation_1 0 0 -1 9.142077952729524e-07
