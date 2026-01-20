@@ -7,16 +7,12 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/devices/robotiq/protos/Robotiq3fGripper.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/conveyors/protos/ConveyorBelt.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/CardboardBox.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/WoodenPalletStack.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/tools/protos/PlatformCart.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/fire_extinguisher/protos/FireExtinguisher.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/pallet/protos/WoodenPallet.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/PlasticCrate.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/BmwX5.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/vehicles/protos/LincolnMKZ.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/tools/protos/Wrench.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/tools/protos/Hammer.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/solids/protos/SolidBox.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/TrafficCone.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/obstacles/protos/OilBarrel.proto"
 
@@ -28,8 +24,8 @@ WorldInfo {
   basicTimeStep 16
 }
 Viewpoint {
-  orientation -0.30 -0.12 0.94 4.1
-  position 6 8 5
+  orientation -0.255558188812521 -0.02355211797231047 0.9665067562463713 3.5885659215464565
+  position 4.79993849166587 1.8080822015752496 2.3295104719594177
 }
 TexturedBackground {
   texture "factory"
@@ -38,9 +34,8 @@ TexturedBackgroundLight {
   texture "factory"
   luminosity 1.2
 }
-
-# ==================== FACTORY FLOOR ====================
 RectangleArena {
+  translation 0.77221 -0.00959109 0
   floorSize 20 20
   floorTileSize 2 2
   floorAppearance PBRAppearance {
@@ -66,8 +61,83 @@ RectangleArena {
     metalness 0.1
   }
 }
-
-# ==================== INDUSTRIAL COLUMNS ====================
+TrafficCone {
+  translation -0.63 -2 0
+  name "cone_3(1)"
+}
+TrafficCone {
+  translation -0.0160393 -1.91734 -7.10543e-15
+  rotation 0 0 1 0.523599
+  name "cone_3(2)"
+}
+DEF safety_line_front Solid {
+  translation 0 1.16 0.005
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.85 0
+        roughness 0.3
+        metalness 0
+        emissiveColor 0.3 0.25 0
+      }
+      geometry Box {
+        size 3 0.1 0.01
+      }
+    }
+  ]
+  name "safety_line_front"
+}
+DEF safety_line_back Solid {
+  translation 0 -1.17 0.005
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.85 0
+        roughness 0.3
+        metalness 0
+        emissiveColor 0.3 0.25 0
+      }
+      geometry Box {
+        size 3 0.1 0.01
+      }
+    }
+  ]
+  name "safety_line_back"
+}
+DEF safety_line_left Solid {
+  translation -1.19 -0.01 0.005
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.85 0
+        roughness 0.3
+        metalness 0
+        emissiveColor 0.3 0.25 0
+      }
+      geometry Box {
+        size 0.1 2.5 0.01
+      }
+    }
+  ]
+  name "safety_line_left"
+}
+DEF safety_line_right Solid {
+  translation 1.15 0 0.005
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.85 0
+        roughness 0.3
+        metalness 0
+        emissiveColor 0.3 0.25 0
+      }
+      geometry Box {
+        size 0.1 2.5 0.01
+      }
+    }
+  ]
+  name "safety_line_right"
+}
 DEF column_1 Solid {
   translation 4 4 2.5
   children [
@@ -170,20 +240,6 @@ DEF column_6 Solid {
   ]
   name "industrial_column_6"
 }
-
-# ==================== DAMAGED VEHICLES ====================
-BmwX5 {
-  translation 7 -6 0
-  rotation 0 0 1 2.5
-  name "damaged_car_1"
-}
-LincolnMKZ {
-  translation -7 6 0
-  rotation 0 0 1 -0.8
-  name "damaged_car_2"
-}
-
-# ==================== CONVEYOR BELTS ====================
 ConveyorBelt {
   translation 3 0 0
   rotation 0 0 1 1.5708
@@ -210,24 +266,20 @@ ConveyorBelt {
   borderHeight 0.06
   speed 0
 }
-
-# ==================== SAFETY EQUIPMENT ====================
 FireExtinguisher {
-  translation 9.5 9.5 0
-  rotation 0 0 1 -2.35
+  translation 9.50000015961833 9.499999789451373 -0.0023544000014164013
+  rotation -0.0004203260790264931 0.001627729636542374 0.9999985869101105 -2.3500010028084546
 }
 FireExtinguisher {
-  translation -9.5 9.5 0
-  rotation 0 0 1 2.35
+  translation -9.52940691834333 9.544814946114089 -0.0041283493181151765
+  rotation -0.031007681255265682 -0.0058819133603336795 0.9995018393171637 2.105440065809636
   name "fire_extinguisher_2"
 }
 FireExtinguisher {
-  translation 9.5 -9.5 0
-  rotation 0 0 1 -0.8
+  translation 9.500000213885855 -9.499999844748448 -0.0023544000014162902
+  rotation 0.003410116663510878 -0.002058467461967442 -0.9999920668765574 0.8000056883449337
   name "fire_extinguisher_3"
 }
-
-# ==================== OIL BARRELS ====================
 OilBarrel {
   translation 6 7 0.44
   name "oil_barrel_1"
@@ -248,8 +300,10 @@ OilBarrel {
   translation -6.6 -6.8 0.44
   name "oil_barrel_5"
 }
-
-# ==================== TRAFFIC CONES ====================
+OilBarrel {
+  translation -0.854594 2.20281 0.44
+  name "oil_barrel_5(1)"
+}
 TrafficCone {
   translation 5 -3 0
   name "cone_1"
@@ -270,31 +324,15 @@ TrafficCone {
   translation -5.5 2.5 0
   name "cone_5"
 }
-
-# ==================== STORAGE AREA - PALLETS ====================
-WoodenPalletStack {
-  translation 8 3 0
-  rotation 0 0 1 0.2
-  name "pallet_stack_1"
-  palletNumber 4
-}
-WoodenPalletStack {
-  translation 8 5 0
-  rotation 0 0 1 -0.1
-  name "pallet_stack_2"
-  palletNumber 3
-}
 WoodenPallet {
   translation 7 4 0
   name "pallet_single_1"
 }
 WoodenPallet {
-  translation -8 -3 0
+  translation 1.35515 2.11028 0
   rotation 0 0 1 0.5
   name "pallet_single_2"
 }
-
-# ==================== PLASTIC CRATES ====================
 PlasticCrate {
   translation 7 -2 0
   rotation 0 0 1 0.15
@@ -313,12 +351,15 @@ PlasticCrate {
   size 0.6 0.5 0.4
 }
 PlasticCrate {
-  translation -7 2 0
+  translation -6.1986 1.85547 -3.55271e-15
   name "crate_4"
   size 0.5 0.4 0.3
 }
-
-# ==================== CARDBOARD BOXES ====================
+PlasticCrate {
+  translation 1.2384 2.09305 0.23
+  name "crate_4(1)"
+  size 0.5 0.4 0.3
+}
 CardboardBox {
   translation -8 5 0
   rotation 0 0 1 0.3
@@ -353,39 +394,46 @@ CardboardBox {
   name "cardboard_6"
   size 0.4 0.4 0.3
 }
-
-# ==================== PLATFORM CARTS ====================
 PlatformCart {
-  translation -6 -4 0
-  rotation 0 0 1 0.6
+  hidden translation_2 -0.308 -0.201 0.04
+  hidden translation_3 -0.308 0.201 0.04
+  hidden translation_4 0.308 -0.201 0.04
+  hidden translation_5 0.308 0.201 0.04
+  translation -5.9999279084048025 -3.999950696057735 -0.001503778761282909
+  rotation 0.00033133802413080264 -0.0010651431508334288 0.9999993778423975 0.6000003756766872
 }
 PlatformCart {
-  translation 5 6 0
-  rotation 0 0 1 -1.2
+  hidden translation_2 -0.308 -0.201 0.04
+  hidden translation_3 -0.308 0.201 0.04
+  hidden translation_4 0.308 -0.201 0.04
+  hidden translation_5 0.308 0.201 0.04
+  translation 5.000031635166085 5.99991859181151 -0.0015037787612828812
+  rotation -0.0003288854769842104 -0.00048236933805575235 -0.9999998295770678 1.2000001344609457
   name "platform cart(1)"
 }
-
-# ==================== TOOLS ON FLOOR ====================
 Wrench {
-  translation 2 3 0.02
-  rotation 0 0 1 0.8
+  translation 2.000000027241182 2.9999999677190603 -0.0010543923742001118
+  rotation -4.871935428035898e-05 -1.963009436278344e-05 0.9999999986205419 0.7999999804457772
 }
 Hammer {
-  translation 2.3 3.2 0.02
-  rotation 0 0 1 -0.5
+  translation 0.9234064477440915 0.8368381130962189 0.012593415290826748
+  rotation -0.022031486441000128 -0.004186794414746834 -0.999748510555394 0.49517973630419954
+}
+Hammer {
+  translation 2.2999547082270357 3.19961667619807 0.012593415355905583
+  rotation -0.022140181817401367 -0.004237363023708646 -0.9997458962674953 0.4925731708653284
+  name "hammer(1)"
 }
 Wrench {
-  translation -3 -2 0.02
-  rotation 0 0 1 2.1
+  translation -2.9999999616084483 -1.99999998238666 -0.001054392374200111
+  rotation -1.2078568841347908e-05 -2.025221508870215e-05 0.999999999721978 2.0999999796962077
   name "wrench(1)"
 }
-
-# ==================== INDUSTRIAL SHELVING ====================
 DEF industrial_shelf_1 Solid {
   translation 9 0 0
   rotation 0 0 1 1.5708
   children [
-    DEF shelf_post1 Transform {
+    DEF shelf_post1 Pose {
       translation 0 -0.5 1.25
       children [
         Shape {
@@ -400,7 +448,7 @@ DEF industrial_shelf_1 Solid {
         }
       ]
     }
-    DEF shelf_post2 Transform {
+    DEF shelf_post2 Pose {
       translation 0 0.5 1.25
       children [
         Shape {
@@ -415,7 +463,7 @@ DEF industrial_shelf_1 Solid {
         }
       ]
     }
-    DEF shelf_level1 Transform {
+    DEF shelf_level1 Pose {
       translation 0 0 0.5
       children [
         Shape {
@@ -430,7 +478,7 @@ DEF industrial_shelf_1 Solid {
         }
       ]
     }
-    DEF shelf_level2 Transform {
+    DEF shelf_level2 Pose {
       translation 0 0 1.2
       children [
         Shape {
@@ -445,7 +493,7 @@ DEF industrial_shelf_1 Solid {
         }
       ]
     }
-    DEF shelf_level3 Transform {
+    DEF shelf_level3 Pose {
       translation 0 0 1.9
       children [
         Shape {
@@ -467,7 +515,7 @@ DEF industrial_shelf_2 Solid {
   translation -9 0 0
   rotation 0 0 1 -1.5708
   children [
-    DEF shelf_post1 Transform {
+    DEF shelf_post1 Pose {
       translation 0 -0.5 1.25
       children [
         Shape {
@@ -482,7 +530,7 @@ DEF industrial_shelf_2 Solid {
         }
       ]
     }
-    DEF shelf_post2 Transform {
+    DEF shelf_post2 Pose {
       translation 0 0.5 1.25
       children [
         Shape {
@@ -497,7 +545,7 @@ DEF industrial_shelf_2 Solid {
         }
       ]
     }
-    DEF shelf_level1 Transform {
+    DEF shelf_level1 Pose {
       translation 0 0 0.5
       children [
         Shape {
@@ -512,7 +560,7 @@ DEF industrial_shelf_2 Solid {
         }
       ]
     }
-    DEF shelf_level2 Transform {
+    DEF shelf_level2 Pose {
       translation 0 0 1.2
       children [
         Shape {
@@ -527,7 +575,7 @@ DEF industrial_shelf_2 Solid {
         }
       ]
     }
-    DEF shelf_level3 Transform {
+    DEF shelf_level3 Pose {
       translation 0 0 1.9
       children [
         Shape {
@@ -545,8 +593,6 @@ DEF industrial_shelf_2 Solid {
   ]
   name "industrial_shelf_2"
 }
-
-# ==================== WORK TABLE ====================
 DEF work_table Solid {
   translation 0 0 0.01
   children [
@@ -563,40 +609,55 @@ DEF work_table Solid {
   ]
   name "robot_work_platform"
 }
-
-# ==================== THE ROBOT ====================
 UR5e {
   hidden position_0_0 -9.140426617800654e-07
+  hidden translation_1 0 0 0.163
   hidden rotation_1 0 0 -1 9.142077952729524e-07
   hidden position_1_0 -1.5699720915017437
+  hidden translation_2 0 0.138 0
   hidden rotation_2 0 1 0 0.0008239084983467616
   hidden position_2_0 1.5700278614830503
+  hidden translation_3 0 -0.131 0.425
   hidden rotation_3 0 1 0 1.5700278614830503
   hidden position_3_0 -1.5699963558661687
-  hidden rotation_4 0 1 0 0.000799644134455762
+  hidden translation_4 0 0 0.392
+  hidden rotation_4 0 1 0 0.0007996441339004034
   hidden position_4_0 -1.570000218227619
+  hidden translation_5 0 0.127 0
   hidden rotation_5 0 0 -1 1.570000218227619
   hidden position_5_0 4.1851254916092354e-07
+  hidden translation_6 0 0 0.1
   hidden rotation_6 0 0.9999999999999999 0 4.182955279236503e-07
   hidden position_7_0 -1.1075449196664343e-05
   hidden position_7_1 -3.292586348582106e-05
   hidden position_7_2 0.04950032212700745
-  hidden rotation_8 0.706825225090358 0.7073882252166269 -9.14203274088098e-07 3.1415901653592355
+  hidden translation_8 -0.0455 0.0214 0.036
+  hidden rotation_8 0.7068252250903581 0.7073882252166267 -9.14203274088097e-07 3.1415901653592355
   hidden position_8_0 0.04952929996748288
+  hidden translation_9 0.02 0 0
   hidden rotation_9 0 0 1 2.9299972551211438e-05
   hidden position_9_0 4.7648092970119474e-08
-  hidden rotation_10 0 0 -1 0.5199999523519044
+  hidden translation_10 0.05 -0.028 0
+  hidden rotation_10 0 0 -1 0.5199999523519037
   hidden position_10_0 -0.05230000000004499
-  hidden rotation_12 0.7068252251165932 0.7073882251382828 -8.63641683904417e-06 3.1415747086365813
+  hidden translation_11 0.039 0 0
+  hidden translation_12 -0.0455 0.0214 -0.036
+  hidden rotation_12 0.7068252251165931 0.7073882251382828 -8.636416839044167e-06 3.1415747086365813
   hidden position_12_0 0.04952909597671907
-  hidden rotation_13 0 0 1 2.9095935764313257e-05
+  hidden translation_13 0.02 0 0
+  hidden rotation_13 0 0 0.9999999999999999 2.9095935764313257e-05
   hidden position_13_0 4.764877645536044e-08
-  hidden rotation_14 0 0 -1 0.5199999523512213
+  hidden translation_14 0.05 -0.028 0
+  hidden rotation_14 0 0 -1 0.5199999523512204
   hidden position_14_0 -0.05230000000003327
-  hidden rotation_16 0 0 1 3.2098083538618743e-07
+  hidden translation_15 0.039 0 0
+  hidden translation_16 0.02 0 0
+  hidden rotation_16 0 0 1 3.1959430261741937e-07
   hidden position_16_0 4.7210067572294934e-08
-  hidden rotation_17 0 0 -1 0.519999952789932
+  hidden translation_17 0.05 -0.028 0
+  hidden rotation_17 0 0 -1 0.5199999527899312
   hidden position_17_0 -0.05230000000000001
+  hidden translation_18 0.039 0 0
   controller "auto_controller"
   toolSlot [
     Robotiq3fGripper {
@@ -611,8 +672,8 @@ UR5e {
   ]
 }
 DEF red_box Solid {
-  translation 0.45232912904435907 0.39744229860060265 0.049960760000000014
-  rotation -8.618963196392398e-17 -3.1309591668157835e-16 1 0.1696534271666169
+  translation 0.45232912904435907 0.39744229860060265 0.049980380002994144
+  rotation 1.0642876808101682e-17 -1.950788537559627e-16 1 0.1696534271666169
   children [
     Shape {
       appearance PBRAppearance {
@@ -633,12 +694,10 @@ DEF red_box Solid {
     density -1
     mass 0.1
   }
-  linearVelocity 6.692517445532827e-17 3.3949623568489696e-17 -7.105427357601033e-17
-  angularVelocity -3.3306690738754795e-16 1.3322676295501865e-15 1.138755568213972e-16
 }
 DEF green_box Solid {
-  translation 0.5943903091549003 0.07421787474040088 0.049960760000000014
-  rotation -7.563397327924857e-17 -3.1173990099298316e-17 1 1.1156298688775568
+  translation 0.5943903091549003 0.07421787474040088 0.049980380002994144
+  rotation 4.359274309313083e-17 4.202309793967323e-18 1 1.1156298688775568
   children [
     Shape {
       appearance PBRAppearance {
@@ -659,12 +718,10 @@ DEF green_box Solid {
     density -1
     mass 0.1
   }
-  linearVelocity -2.540240405765173e-17 -2.5324457989538296e-17 -1.0658141036401793e-16
-  angularVelocity -1.9721522630525295e-31 -8.32667268468867e-16 -6.38995700091935e-17
 }
 DEF blue_box Solid {
-  translation 0.4700490499268872 -0.3982692237088461 0.04996076
-  rotation -2.1180787794748798e-16 -7.510384722742201e-17 0.9999999999999999 0.4248988465185228
+  translation 0.4700490499268872 -0.3982692237088461 0.049980380002994144
+  rotation 1.4699917712624754e-16 3.010028354989799e-17 1 0.4248988465185228
   children [
     Shape {
       appearance PBRAppearance {
@@ -685,8 +742,6 @@ DEF blue_box Solid {
     density -1
     mass 0.1
   }
-  linearVelocity -1.2582997728297383e-17 -1.4928294998135027e-17 3.552713678800502e-17
-  angularVelocity -4.996003610813204e-16 -6.661338147750931e-16 -5.619331869369619e-17
 }
 Solid {
   translation -0.51 0.36 0.05
