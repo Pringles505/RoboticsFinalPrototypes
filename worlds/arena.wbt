@@ -1,0 +1,456 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/RobotArm.proto"
+
+WorldInfo {
+  info [
+    "Nexus - AI Council Robot Control Demo"
+  ]
+  title "Nexus Arena"
+  basicTimeStep 16
+  contactProperties [
+    ContactProperties {
+      material1 "cube"
+      material2 "table"
+      coulombFriction [
+        0.8
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.16493598268543275 -0.03699991968180977 0.985610028134419 3.574887480838775
+  position 2.3902113501786553 1.1031461464914796 0.9547365772406304
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 3 3
+  wallHeight 0.05
+}
+RobotArm {
+  hidden position_0_0 0.24896270579271707
+  hidden rotation_1 0 0 1 0.248962705792717
+  hidden position_1_0 -1.1233004787457483
+  hidden rotation_2 0 -1 0 1.1233004787457481
+  hidden position_2_0 1.7904017951510194
+  hidden rotation_3 0 1 0 1.7904017951510194
+  hidden position_3_0 -0.667101316405271
+  hidden rotation_4 0 -1 0 0.6671013164052708
+}
+DEF CAMERA_RIG Robot {
+  children [
+    DEF TOP_CAMERA Camera {
+      translation 0.55 0 0.7
+      rotation 0 1 0 1.5708
+      name "top_camera"
+      fieldOfView 1.2
+      width 640
+      height 480
+      recognition Recognition {
+        maxRange 2
+        maxObjects 20
+      }
+    }
+    DEF FRONT_CAMERA Camera {
+      translation 1.13 -3.44967e-07 0.26
+      rotation 2.6535899999906573e-06 -2.202989999992244e-13 0.9999999999964793 3.14159
+      name "front_camera"
+      fieldOfView 1
+      width 640
+      height 480
+      recognition Recognition {
+        maxRange 2
+        maxObjects 20
+      }
+    }
+    DEF SIDE_CAMERA Camera {
+      translation 0.55 -0.7 0.3
+      rotation -9.770659999962178e-07 2.605269999989915e-06 -0.9999999999961291 -1.5707953071795862
+      name "side_camera"
+      fieldOfView 1
+      width 640
+      height 480
+      recognition Recognition {
+        maxRange 2
+        maxObjects 20
+      }
+    }
+  ]
+  name "camera_rig"
+  controller "camera_controller"
+  supervisor TRUE
+}
+DEF TABLE Solid {
+  translation 0.6 0 0.15
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.6 0.4 0.2
+        roughness 0.8
+        metalness 0
+      }
+      geometry Box {
+        size 0.6 0.8 0.02
+      }
+    }
+    Pose {
+      translation 0.25 0.35 -0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.4 0.3 0.2
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.02
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.25 0.35 -0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.4 0.3 0.2
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.02
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.25 -0.35 -0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.4 0.3 0.2
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.02
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.25 -0.35 -0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.4 0.3 0.2
+          }
+          geometry Cylinder {
+            height 0.14
+            radius 0.02
+          }
+        }
+      ]
+    }
+  ]
+  name "table"
+  contactMaterial "table"
+  boundingObject Box {
+    size 0.6 0.8 0.02
+  }
+}
+# Reference Markers - 3x3 grid for spatial calibration
+# Each marker has a UNIQUE COLOR for identification
+# Back row (Y = 0.35, further from robot) - RED, ORANGE, YELLOW
+DEF MARKER_BACK_LEFT Solid {
+  translation 0.44 0.35 0.20
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        transparency 0.3
+        metalness 0
+        roughness 0.5
+        emissiveColor 0.3 0 0
+      }
+      geometry Sphere {
+        radius 0.02
+      }
+    }
+  ]
+  name "marker_back_left"
+}
+DEF MARKER_BACK_CENTER Solid {
+  translation 0.61 0.35 0.20
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.5 0
+        transparency 0.3
+        metalness 0
+        roughness 0.5
+        emissiveColor 0.3 0.15 0
+      }
+      geometry Sphere {
+        radius 0.02
+      }
+    }
+  ]
+  name "marker_back_center"
+}
+DEF MARKER_BACK_RIGHT Solid {
+  translation 0.80 0.35 0.20
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 1 0
+        transparency 0.3
+        metalness 0
+        roughness 0.5
+        emissiveColor 0.3 0.3 0
+      }
+      geometry Sphere {
+        radius 0.02
+      }
+    }
+  ]
+  name "marker_back_right"
+}
+# Middle row (Y = 0.0, center of table) - GREEN, CYAN, BLUE
+DEF MARKER_MID_LEFT Solid {
+  translation 0.44 0.0 0.20
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0
+        transparency 0.3
+        metalness 0
+        roughness 0.5
+        emissiveColor 0 0.3 0
+      }
+      geometry Sphere {
+        radius 0.02
+      }
+    }
+  ]
+  name "marker_mid_left"
+}
+DEF MARKER_MID_CENTER Solid {
+  translation 0.61 0.0 0.20
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 1
+        transparency 0.3
+        metalness 0
+        roughness 0.5
+        emissiveColor 0 0.3 0.3
+      }
+      geometry Sphere {
+        radius 0.02
+      }
+    }
+  ]
+  name "marker_mid_center"
+}
+DEF MARKER_MID_RIGHT Solid {
+  translation 0.80 0.0 0.20
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 1
+        transparency 0.3
+        metalness 0
+        roughness 0.5
+        emissiveColor 0 0 0.3
+      }
+      geometry Sphere {
+        radius 0.02
+      }
+    }
+  ]
+  name "marker_mid_right"
+}
+# Front row (Y = -0.35, closer to robot) - PURPLE, MAGENTA, WHITE
+DEF MARKER_FRONT_LEFT Solid {
+  translation 0.44 -0.35 0.20
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.5 0 1
+        transparency 0.3
+        metalness 0
+        roughness 0.5
+        emissiveColor 0.15 0 0.3
+      }
+      geometry Sphere {
+        radius 0.02
+      }
+    }
+  ]
+  name "marker_front_left"
+}
+DEF MARKER_FRONT_CENTER Solid {
+  translation 0.61 -0.35 0.20
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 1
+        transparency 0.3
+        metalness 0
+        roughness 0.5
+        emissiveColor 0.3 0 0.3
+      }
+      geometry Sphere {
+        radius 0.02
+      }
+    }
+  ]
+  name "marker_front_center"
+}
+DEF MARKER_FRONT_RIGHT Solid {
+  translation 0.80 -0.35 0.20
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 1 1
+        transparency 0.3
+        metalness 0
+        roughness 0.5
+        emissiveColor 0.2 0.2 0.2
+      }
+      geometry Sphere {
+        radius 0.02
+      }
+    }
+  ]
+  name "marker_front_right"
+}
+DEF BLUE_CUBE Solid {
+  translation 0.49525053185835777 0.14225808212221286 0.18996609664000005
+  rotation 2.2858798040344072e-16 -1.3936618076930305e-16 1 0.16826868946005988
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.1 0.3 0.9
+        roughness 0.3
+        metalness 0.1
+      }
+      geometry Box {
+        size 0.06 0.06 0.06
+      }
+    }
+  ]
+  name "blue_cube"
+  contactMaterial "cube"
+  boundingObject Box {
+    size 0.06 0.06 0.06
+  }
+  physics Physics {
+    density 800
+  }
+  recognitionColors [
+    0.1 0.3 0.9
+  ]
+}
+DEF RED_CUBE Solid {
+  translation 0.7048638317012471 -0.17490608907739813 0.18996609664000005
+  rotation 0.975809461200493 -0.15458961063345034 -0.1545896106334504 1.5952818155674726
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.9 0.1 0.1
+        roughness 0.3
+        metalness 0.1
+      }
+      geometry Box {
+        size 0.06 0.06 0.06
+      }
+    }
+  ]
+  name "red_cube"
+  contactMaterial "cube"
+  boundingObject Box {
+    size 0.06 0.06 0.06
+  }
+  physics Physics {
+    density 800
+  }
+  recognitionColors [
+    0.9 0.1 0.1
+  ]
+}
+DEF GREEN_CUBE Solid {
+  translation 0.5729365059988548 -0.053515649526412815 0.18996609664000005
+  rotation -7.524300639840986e-17 -3.6166889035795675e-17 -1 0.15593745836175735
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.1 0.8 0.2
+        roughness 0.3
+        metalness 0.1
+      }
+      geometry Box {
+        size 0.06 0.06 0.06
+      }
+    }
+  ]
+  name "green_cube"
+  contactMaterial "cube"
+  boundingObject Box {
+    size 0.06 0.06 0.06
+  }
+  physics Physics {
+    density 800
+  }
+  recognitionColors [
+    0.1 0.8 0.2
+  ]
+}
+DEF YELLOW_CUBE Solid {
+  translation 0.44699749645196196 0.20570268937517666 0.18996609664000005
+  rotation -3.2783500656333016e-16 3.171195712578674e-16 1 0.08679238726728218
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.9 0.1
+        roughness 0.3
+        metalness 0.1
+      }
+      geometry Box {
+        size 0.06 0.06 0.06
+      }
+    }
+  ]
+  name "yellow_cube"
+  contactMaterial "cube"
+  boundingObject Box {
+    size 0.06 0.06 0.06
+  }
+  physics Physics {
+    density 800
+  }
+  recognitionColors [
+    0.95 0.9 0.1
+  ]
+}
+DEF TARGET_ZONE Pose {
+  translation 0.9 0 0.01
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.8 0.2
+        transparency 0.7
+        roughness 1
+        metalness 0
+      }
+      geometry Cylinder {
+        height 0.005
+        radius 0.1
+      }
+    }
+  ]
+}

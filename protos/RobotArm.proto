@@ -1,0 +1,255 @@
+# APOLLO ARM at 0 0 0 0 arm points forward 
+# 3-link system to apply FABRIK or law of cosines
+
+#sidenote: VRML no esta tan mal como dicen
+PROTO RobotArm [
+  field SFVec3f    translation     0 0 0
+  field SFRotation rotation        0 0 1 0
+  field SFString   name            "robot_arm"
+  field SFString   controller      "arm_controller"
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    name IS name
+    controller IS controller
+    supervisor TRUE
+    children [
+      # Base pedestal 
+      DEF BASE Transform {
+        translation 0 0 0.05
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.3 0.3 0.3
+              metalness 0.8
+              roughness 0.3
+            }
+            geometry Cylinder {
+              height 0.1
+              radius 0.08
+            }
+          }
+        ]
+      }
+
+      # Shoulder Joint Z
+      DEF SHOULDER HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0 0 1
+          anchor 0 0 0.1
+        }
+        device [
+          RotationalMotor {
+            name "shoulder_motor"
+            maxVelocity 2.0
+            maxTorque 50.0
+            minPosition -3.14159
+            maxPosition 3.14159
+          }
+          PositionSensor {
+            name "shoulder_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0 0 0.1
+          children [
+            # Shoulder housing
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.2 0.2 0.6
+                metalness 0.5
+                roughness 0.4
+              }
+              geometry Cylinder {
+                height 0.05
+                radius 0.05
+              }
+            }
+
+            # Elbow Joint Y
+            DEF ELBOW HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor 0 0 0.025
+              }
+              device [
+                RotationalMotor {
+                  name "elbow_motor"
+                  maxVelocity 2.0
+                  maxTorque 40.0
+                  minPosition -1.57
+                  maxPosition 2.0
+                }
+                PositionSensor {
+                  name "elbow_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation 0 0 0.025
+                children [
+                  # Link 1 (Red) 
+                  DEF LINK1 Transform {
+                    translation 0.2 0 0
+                    children [
+                      Shape {
+                        appearance PBRAppearance {
+                          baseColor 0.8 0.2 0.2
+                          metalness 0.3
+                          roughness 0.5
+                        }
+                        geometry Box {
+                          size 0.4 0.04 0.04
+                        }
+                      }
+                    ]
+                  }
+
+                  # Wrist Joint 
+                  DEF WRIST HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis 0 1 0
+                      anchor 0.4 0 0
+                    }
+                    device [
+                      RotationalMotor {
+                        name "wrist_motor"
+                        maxVelocity 2.5
+                        maxTorque 20.0
+                        minPosition -2.5
+                        maxPosition 2.5
+                      }
+                      PositionSensor {
+                        name "wrist_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation 0.4 0 0
+                      children [
+                        # Link 2 (Green)
+                        DEF LINK2 Transform {
+                          translation 0.15 0 0
+                          children [
+                            Shape {
+                              appearance PBRAppearance {
+                                baseColor 0.2 0.8 0.2
+                                metalness 0.3
+                                roughness 0.5
+                              }
+                              geometry Box {
+                                size 0.3 0.035 0.035
+                              }
+                            }
+                          ]
+                        }
+
+                        DEF END_EFFECTOR HingeJoint {
+                          jointParameters HingeJointParameters {
+                            axis 0 1 0
+                            anchor 0.3 0 0
+                          }
+                          device [
+                            RotationalMotor {
+                              name "end_motor"
+                              maxVelocity 3.0
+                              maxTorque 10.0
+                              minPosition -2.5
+                              maxPosition 2.5
+                            }
+                            PositionSensor {
+                              name "end_sensor"
+                            }
+                          ]
+                          endPoint Solid {
+                            translation 0.3 0 0
+                            children [
+                              # Link 3 
+                              DEF LINK3 Transform {
+                                translation 0.1 0 0
+                                children [
+                                  Shape {
+                                    appearance PBRAppearance {
+                                      baseColor 0.2 0.2 0.8
+                                      metalness 0.3
+                                      roughness 0.5
+                                    }
+                                    geometry Box {
+                                      size 0.2 0.03 0.03
+                                    }
+                                  }
+                                ]
+                              }
+                              # Pusher tip ROSAAAA
+                              DEF TIP Transform {
+                                translation 0.2 0 0
+                                children [
+                                  Shape {
+                                    appearance PBRAppearance {
+                                      baseColor 1 0.2 0.6
+                                      metalness 0.1
+                                      roughness 0.3
+                                      emissiveColor 0.5 0.1 0.3
+                                    }
+                                    geometry Sphere {
+                                      radius 0.03
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                            name "end_effector"
+                            boundingObject Transform {
+                              translation 0.1 0 0
+                              children [
+                                Box {
+                                  size 0.22 0.04 0.04
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                      name "link2"
+                      boundingObject Transform {
+                        translation 0.15 0 0
+                        children [
+                          Box {
+                            size 0.3 0.04 0.04
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "link1"
+                boundingObject Transform {
+                  translation 0.2 0 0
+                  children [
+                    Box {
+                      size 0.4 0.05 0.05
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+          name "shoulder"
+          boundingObject Cylinder {
+            height 0.05
+            radius 0.05
+          }
+        }
+      }
+    ]
+    boundingObject Transform {
+      translation 0 0 0.05
+      children [
+        Cylinder {
+          height 0.1
+          radius 0.08
+        }
+      ]
+    }
+  }
+}
