@@ -95,18 +95,18 @@ class WebcamRoboticPicker:
                 f"{g.getName():30} min={g.getMinPosition():.4f} max={g.getMaxPosition():.4f}"
             )
 
-        # Gripper positions fucking headache finding these values, use the position finder script
+        # Gripper positions — difficult to find; use the position finder script
         self.GRIPPER_OPEN = -0.1
         self.GRIPPER_CLOSE = 0.6
 
-        # Arm positions more manual bullshit cube, sphere and cylinder they are all cubes but fuck replacing them names
+        # Arm positions — manually tuned; cube, sphere, and cylinder are treated as cubes
         self.positions = {
             "home": [0, -1.57, 1.57, -1.57, -1.57, 0],
-            # Box positions where the objects are 
+            # Box positions where the objects are
             "red_cube_end": [-3.898, -1.109, 1.37, -1.87, -1.57, -0.0],
             "green_sphere_end": [-3.398, -1.109, 1.37, -1.87, -1.57, -0.0],
             "blue_cylinder_end": [-2.899, -1.109, 1.37, -1.87, -1.57, 0.0],
-            # Above mid position so it doesnt hit anything like an animation frame
+            # Above mid position so it does not hit anything (like an animation frame)
             "blue_cylinder_above": [-0.6, -1.37, 1.37, -1.57, -1.57, 0.0],
             "green_sphere_above": [-0.1, -1.47, 1.67, -1.87, -1.57, 0.0],
             "red_cube_above": [0.5, -1.27, 1.57, -2.07, -1.57, -0.0],
